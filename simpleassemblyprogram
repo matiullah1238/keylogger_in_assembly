@@ -1,0 +1,19 @@
+section .data
+    num1 dw 10  ; First number
+    num2 dw 20  ; Second number
+
+section .text
+    global _start
+
+_start:
+    mov ax, [num1]  ; Move the value of num1 into the AX register
+    add ax, [num2]  ; Add the value of num2 to the AX register
+    mov [result], ax  ; Move the sum from AX to the memory location "result"
+
+    ; Exit the program
+    mov eax, 1  ; System call number for exit
+    xor ebx, ebx  ; Exit status 0
+    int 0x80  ; Call the kernel
+
+section .bss
+    result resw 1  ; Storage for the result
